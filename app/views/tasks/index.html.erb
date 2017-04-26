@@ -1,4 +1,7 @@
-<h1>タスク一覧</h1>
+<% if logged_in? %>
+
+<h1>現在のユーザー：<%=current_user.name%></h1>
+<h2>タスク一覧</h2>
 
 <% if @tasks.any? %>
 
@@ -12,7 +15,7 @@
     </thead>
     <tbody>
       
-<% @tasks.each do |task| %>
+<% @only_own.each do |task| %>
 
 <tr>
   <td>
@@ -37,8 +40,21 @@
 
 <% end %>
 
-
 <%= link_to '新規タスクの追加', new_task_path, class: "btn btn-primary" %>
 
 
+<% else %>
 
+
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Welcome to the TaskList!</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+      <%= link_to 'Login', login_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+    DBG / test@test.test  /test<br>
+    DBG2/ test2@test2.test/test2
+  
+  
+<% end %>
